@@ -1,8 +1,12 @@
-class Jigglebot:
+import SpriteManager
+from Sprite import Sprite
+from Bullet import Bullet 
+
+class Jigglebot(Sprite):
     
     speed = 2
     diameter = 50
-    c = color(0,100,255)
+    c = color(255,200,0)
     
     def __init__(self, x, y, team):
         self.x = x
