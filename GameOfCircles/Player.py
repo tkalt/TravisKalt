@@ -13,9 +13,6 @@ class Player(Sprite):
     speed = 8
     diameter = 50
     c = color(255,0,0)
-    
-    # constru
-    # instance methods
 
     def move(self):
         if self.left:
@@ -29,13 +26,17 @@ class Player(Sprite):
         self.x = constrain(self.x, self.diameter / 2, width - self.diameter / 2)
         self.y = constrain(self.y, self.diameter / 2, height - self.diameter / 2)
     
-
     def fire(self):
         print("FIRE")
         
     def keyDown(self):
         if key == 'f' or key == 'F':
             SpriteManager.spawn(Bullet(self.x, self.y, PVector(0, -10), self.team))
+            
+    def keyDown(self):
+        if key == 'f' or key == 'F':
+            SpriteManager.spawn(Bullet(self.x, self.y, PVector(0, -10), self.team))
+
     
         if keyCode == LEFT:
             self.left = True

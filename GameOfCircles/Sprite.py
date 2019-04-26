@@ -3,7 +3,7 @@ import SpriteManager
 class Sprite(object):
     team = 2
     diameter = 50
-    c = color(255)
+    c = color(100)
     
     def __init__(self, x, y, team):
         self.x = x

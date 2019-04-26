@@ -1,24 +1,29 @@
-from Sprite import Sprite
-from Bullet import Bullet
-from Player import Player
-from Armored import Armored
-
 import SpriteManager
 
-class Enemy(Armored, Sprite):
+from Sprite import Sprite
+from Bullet import Bullet
+from Enemy import Enemy
 
-    speed = 8
-    diameter = 50
-    c = color(0, 0, 255)
+class Spawner(Enemy):
+    
     mark = 0
     wait = 1000
-    go = True
-
+    mark2 = 0
+    wait2 = 5000
+    speed = 10
+    diameter = 50
+    
+    def spawn(self):
+        if millis() - self.mark2 > self.wait2:
+            self.mark2 = millis()
+            SpriteManager.spawn(Enemy(self.x, self.y, self.team))
+        
     def move(self):
+        self.spawn()
         self.x += self.speed
         if self.x < 0 or self.x > width:
             self.speed *= -1
-
+    
         vector = self.aim(SpriteManager.getPlayer())
         self.fire(vector)
 
@@ -32,9 +37,8 @@ class Enemy(Armored, Sprite):
 
     def fire(self, vector):
         if(millis() - self.mark > self.wait):
-            self.go = not self.go
             self.mark = millis()
-
-        if(self.go):
-            self.go = False
             SpriteManager.spawn(Bullet(self.x, self.y, vector, self.team))
+    
+
+             
